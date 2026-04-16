@@ -2,7 +2,7 @@ import Image from "next/image";
 import recipe from  "./recipe.module.css"
 export default function Recipe() {
   return (
-    <div className="w-full flex flex-col items-center gap-10 ">
+    <div className="w-full h-full flex flex-col items-center gap-10 ">
             <div className="flex flex-col justify-center p-5 items-center mt-30 mb-10">
               <div className="flex w-full mb-2 gap-7 ">
                 <div className="text-lg rounded-4xl bg-[#F4D03F] w-20 h-7 flex justify-center items-center text-black">Dinner</div>
@@ -16,7 +16,7 @@ export default function Recipe() {
 
               </div>
             </div>
-              <div className="w-full flex justify-center items-center bg-[#FAF8F5] p-7 pt-0 text-blackw-full flex justify-center items-center bg-[#FAF8F5] p-4 md:p-7 pt-0 text-black ">
+              <div className="w-full flex justify-center items-center h-full bg-[#FAF8F5] p-7 pt-0 text-blackw-full  bg-[#FAF8F5] md:p-7 text-black ">
                 <div className={`w-[1200px] flex flex-col rounded-4xl bg-white  ${recipe.container} shadow-lg md`}>
                   <div className="w-full h-[450px] relative overflow-hidden ">
                     <Image src="/images/la7ma.jpg" alt="Salmon" fill className="object-cover hover:scale-105 transition-transform duration-700 shadow-lg"/>
