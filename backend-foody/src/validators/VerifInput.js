@@ -1,8 +1,9 @@
-
+const db = require('../config/db');
 
 async function isCorrectUsername (value){
             
             const [rows] = await db.query('SELECT * from users where username = ?',[value]);
+            console.log(rows.length)
             if (rows.length > 0) {
                 throw new Error('username already exists');
             }

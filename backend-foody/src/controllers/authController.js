@@ -98,14 +98,11 @@ const logout = async (req,res) =>{
     res.status(200).json({message: "logged out"});
 
 }
-fetch("http://localhost:3000/api/auth/login",{
-    method : "POST",
-    credentials : "include",
-    headers : {
-        "Content-Type" : "application/json"
-    },
-    body : JSON.stringify({username : "test", password : "test1234"}) 
-});
+const me = (req,res) =>{
+    const name = "Rayen"
+    const last_name ="Abidi"
+    res.json({'message': "welcome",name,last_name})
+}
 
 
-module.exports = { register,login,logout };
+module.exports = { register,login,logout,me };

@@ -2,7 +2,7 @@ import Image from "next/image";
 import recipe from  "./recipe.module.css"
 export default function Recipe() {
   return (
-    <div className="w-full h-full flex flex-col items-center gap-10 ">
+    <div className="w-full h-full flex flex-col items-center gap-10  ">
             <div className="flex flex-col justify-center p-5 items-center mt-30 mb-10">
               <div className="flex w-full mb-2 gap-7 ">
                 <div className="text-lg rounded-4xl bg-[#F4D03F] w-20 h-7 flex justify-center items-center text-black">Dinner</div>

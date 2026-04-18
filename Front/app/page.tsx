@@ -16,7 +16,7 @@ function Main() {
           <h1 className="flex mt-3 mb-3 text-4xl">Unleash your Inner Chef</h1>
           <p className="flex text-lg mt-3 mb-3 ">Explore handcrafted recipes, track your nutrition, and share your culinary creations with the world.</p>
           <div className="flex w-full ">
-            <div className="flex justify-center items-center mt-4 h-[60px] w-[50%] bg-amber-300 text-white rounded-lg text-xl font-bold cursor-pointer hover:bg-white hover:text-amber-300 transition duration-300">
+            <div  className="flex justify-center items-center mt-4 h-[60px] w-[50%] bg-amber-300 text-white rounded-lg text-xl font-bold cursor-pointer hover:bg-white hover:text-amber-300 transition duration-300">
               Get started
             </div>
           </div>

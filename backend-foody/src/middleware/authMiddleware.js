@@ -13,7 +13,6 @@ async function authenticateToken (req,res,next) {
     req.user = payload;
     next();
 
-
   }
   catch (err){
         return res.status(403).json({message : err.message});
