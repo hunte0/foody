@@ -29,11 +29,16 @@ const register = async (req,res) =>{
         .setIssuedAt()
         .setExpirationTime("7d")
         .sign(refresh_secret);
-
+        res.cookie("token", token, {
+        httpOnly: true,
+        secure: false,
+        sameSite: 'lax',
+        maxAge: 15 * 60 * 1000,
+        });
         res.cookie("refreshToken",refresh_token,{
             httpOnly : true,
-            secure : true,
-            sameSite : 'strict',
+            secure : false,
+            sameSite : 'lax',
             maxAge : 7 * 24 * 60 * 60 * 1000,
         });
         res.status(201).json({message:"user est ajouté avec succees",token});
@@ -68,13 +73,19 @@ const login = async (req,res) =>{
         .setIssuedAt()
         .setExpirationTime("7d")
         .sign(refresh_secret);
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: false,
+            sameSite: 'lax',
+            maxAge: 15 * 60 * 1000,
+            });
          res.cookie("refreshToken",refresh_token,{
             httpOnly : true,
-            secure : true,
-            sameSite : 'strict',
+            secure : false,
+            sameSite : 'lax',
             maxAge : 7 * 24 * 60 * 60 * 1000,
         });
-        res.status(200).json({message :"login avec succees",token});
+        res.status(200).json({message :"login avec succees",username : user.username});
         
     }
         
@@ -84,15 +95,16 @@ const login = async (req,res) =>{
 }
 
 const logout = async (req,res) =>{
-    const refreshToken = req.cookies.refreshToken;
-    if (!refreshToken) {
-        return res.status(401).json({message : 'no Token exists'})
-    }
-
+    
+    res.clearCookie("token", {
+    httpOnly: true,
+    secure: false,
+    sameSite: 'lax',
+  });
     res.clearCookie("refreshToken",{
         httpOnly : true,
-        secure : true,
-        sameSite : 'strict',
+        secure : false,
+        sameSite : 'lax',
         
     });
     res.status(200).json({message: "logged out"});
