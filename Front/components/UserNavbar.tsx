@@ -2,27 +2,28 @@
 import Link from 'next/link'
 import homeCss from '../app/homeCss.module.css';
 import { useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 
 
 export default function UserNavbar() {
   const [selected, setSelected] = useState("👤");
   const [open, setOpen] = useState(false);
-  const router = useRouter();
+ 
   const params = useParams();
   const options = ["Mykitchen", "LogOut"];
+  
 
-    const handleOption = async (option: string) => {
+      const handleOption = async (option: string) => {
         if (option === "LogOut") {
-        await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
-        router.push("/login");
-        } else if (option === "Mykitchen") {
+          await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
+          window.location.href = "/login"
           
-          router.push(`${params.name}/mykitchen`);
+        } else if (option === "Mykitchen") {
+          window.location.href = `${params.name}/mykitchen`;
         }
         setSelected(option);
         setOpen(false);
-  };
+      };
 
   return (
     <div className={`flex justify-between h-20 items-center w-full px-4 md:px-10 ${homeCss.navbar}`}>
@@ -44,7 +45,7 @@ export default function UserNavbar() {
       </div>
 
       <div
-        className="relative w-40 flex justify-center"
+        className="relative w-40 flex justify-center "
         onMouseEnter={() => setOpen(true)}
         onMouseLeave={() => setOpen(false)}
       >

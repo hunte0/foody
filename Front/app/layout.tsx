@@ -1,9 +1,13 @@
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./font.css";
 import './globals.css'
 
-import Navbar from "../components/Navbar";
+
+import { cookies } from "next/headers"
+import { jwtVerify } from "jose"
+import NavWrapper from "./NavbarWrapper"
 
 
 const geistSans = Geist({
@@ -25,27 +29,38 @@ export const metadata: Metadata = {
 
 
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+
+
+
+
+
+
+
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const cookieStore = await cookies()
+  const token = cookieStore.get("token")?.value
+  
+  let islogged = false
+  if (token) {
+    try {
+      const secret = new TextEncoder().encode(process.env.JWT_SECRET)
+      await jwtVerify(token, secret)
+      islogged = true
+    } catch(err) {
+      islogged = false
+    }
+  }
+
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full w-full antialiased`}
-    >
-      <body className="h-screen w-full flex flex-col overflow-x-hidden ">
+    <html lang="en">
+      <body>
         
-              
-              <main className="w-full">
-                    {children}
-              </main>
-              
-          
+          <NavWrapper islogged={islogged} />
+          <main className="min-w-full min-h-screen">
+            {children}
+          </main>
         
       </body>
-      
     </html>
-  );
+  )
 }

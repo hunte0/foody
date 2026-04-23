@@ -1,18 +1,18 @@
 "use client"
-import { Input } from '../../components/Input';
+
 import {Icon} from '../../components/Icon';
 import Link from 'next/link'
 import { useState,useRef } from 'react';
-import { useRouter } from 'next/navigation';
 
 
 function Login(){
 
-  const router = useRouter();
+  
   const username = useRef<HTMLInputElement|null>(null);
   const password = useRef<HTMLInputElement|null>(null);
   const [loading, setLoading] = useState(false);
   const [valid,setValid] = useState (false)
+
   const handleClick = ()=>{
       const payload = {
       "username" : username.current?.value,
@@ -37,7 +37,9 @@ function Login(){
         
         if (res.message === "login avec succees"){
           const name = res.username
-          router.push(`/${name}`);
+          window.location.href = `/${name}`
+          
+          
         }
          else {
             setValid(true); 
@@ -47,7 +49,7 @@ function Login(){
 
       
   return (
-    <div className="flex flex-col md:flex-row h-screen w-full">
+    <div className="flex flex-col md:flex-row h-screen w-full ">
       
       <div className="w-full md:w-1/2 flex items-center justify-center p-10 bg-white">
         <div className="w-full max-w-sm">
