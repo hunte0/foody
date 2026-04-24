@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link"
 import Image from "next/image";
-import {useEffect} from "react"
+
 
 type card_info = {
     title : String
@@ -10,7 +10,7 @@ type card_info = {
     difficulty : String
     serving : String
 }
-function Card (props : card_info){
+export function Card (props : card_info){
     const fetching = async () =>{
     try{
         const res = await fetch ("http://localhost:5000/api/auth/me")
@@ -35,15 +35,15 @@ function Card (props : card_info){
                 />
             </div>
             <div className="w-full h-full p-5 pb-10 flex flex-col gap-1">
-                <h1 className="text-5xl">{props.title}</h1>
-                <p className="text-2xl opacity-70">{props.info}</p>
-                    <ul className="flex justify-between items-center mt-5 gap-3 pl-7 pr-7 list-disc marker:text-[#EF9F27] marker:text-3xl font-bold text-3xl">
+                <h1 className="text-4xl">{props.title}</h1>
+                <p className="text-xl opacity-70">{props.info}</p>
+                    <ul className="flex justify-between items-center mt-5 gap-3 pl-7 pr-7 list-disc marker:text-[#EF9F27] marker:text-xl font-bold text-xl">
                         <li className="">{props.duration}</li>
                         <li className="">{props.difficulty}</li>
-                        <li className=" ">{props.serving}</li>
+                        <li className="">{props.serving}</li>
                     </ul>
 
-                <div className="w-full flex justify-center items-center gap-4 mt-14">
+                <div className="w-full flex justify-center items-center gap-4 mt-10">
                     <button className="w-full border text-2xl border-gray-500 rounded-xl p-2 pl-5 pr-5 hover:drop-shadow-[0px_0px_8px_rgba(0,0,0,0.2)] hover:bg-taupe-600 hover:border-gray-300">Edit</button>
                     <button className="w-full border text-2xl border-gray-500 rounded-xl p-2 pl-5 pr-5 hover:drop-shadow-[0px_0px_8px_rgba(0,0,0,0.2)] hover:bg-taupe-600 hover:border-gray-300">Delete</button>
                 </div>
