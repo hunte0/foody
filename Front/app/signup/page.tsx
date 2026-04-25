@@ -2,6 +2,7 @@ import { Input } from '../../components/Input';
 import Link from 'next/link'
 
 function Signin() {
+  
   return (
    <div className="relative w-full h-screen flex flex-col md:flex-row ">
       
@@ -24,7 +25,7 @@ function Signin() {
         </div>
       </div>
 
-      {/* RIGHT SIDE: The Image */}
+      
       <div className="hidden md:block md:w-1/2 h-full">
         <img 
           src="/images/imagev.png" 

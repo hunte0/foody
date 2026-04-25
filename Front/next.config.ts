@@ -1,5 +1,3 @@
-
-
 const nextConfig = {
   async rewrites() {
     return [
@@ -8,6 +6,18 @@ const nextConfig = {
         destination: 'http://localhost:5000/api/:path*',
       },
     ];
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '5000',
+        pathname: '/uploads/**',
+      },
+    ],
+    dangerouslyAllowSVG: true,
+    unoptimized: true, 
   },
 };
 
