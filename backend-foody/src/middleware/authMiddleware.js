@@ -4,7 +4,7 @@ async function authenticateToken (req,res,next) {
   const token = req.cookies.token;
   
   if (!token) {
-    return res.status(401).json({ message: 'Token missing' });
+    return res.status(401).json({ message: 'Token missing' ,ok : false});
   }
   try{
     const secret = new TextEncoder().encode(process.env.JWT_SECRET);
@@ -14,7 +14,7 @@ async function authenticateToken (req,res,next) {
 
   }
   catch (err){
-        return res.status(403).json({message : err.message});
+        return res.status(403).json({message : err.message , ok : false});
   }
 
 }

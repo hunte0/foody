@@ -20,6 +20,8 @@ router.post("/login", login);
 router.post ("/refresh",refreshing)
 router.post ("/logout",authenticateToken,logout);
 router.get("/me",me)
-
+router.post("/checkingLogin", authenticateToken,(req,res)=>{
+    res.status(200).json({message : "logged in",ok : true})
+});
     
 module.exports = router;
