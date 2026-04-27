@@ -187,14 +187,15 @@ function Add() {
                 onChange={(e) => updateIngredient(index, "quantity", e.target.value)}
                 className="w-30 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-700"
               />
-              <input
-                type="text"
-                placeholder="Unit"
-                
+              <select 
                 value={ingredient.unit}
                 onChange={(e) => updateIngredient(index, "unit", e.target.value)}
                 className="w-30 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-700"
-              />
+              >
+                  <option value="Grams" >Grams</option>
+                  <option value="lbs">lbs</option>
+                  <option value="oz">oz</option>
+              </select>
               <button
               onClick={() => removeIngredient(index)}
               disabled={ingredients.length === 1}
