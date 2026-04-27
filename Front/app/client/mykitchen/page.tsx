@@ -37,7 +37,7 @@ function Card (props : card_info){
             <div className="w-full h-full p-5 pb-10 flex flex-col gap-1">
                 <h1 className="text-5xl">{props.title}</h1>
                 <p className="text-2xl opacity-70">{props.info}</p>
-                    <ul className="flex justify-between items-center mt-5 gap-3 pl-7 pr-7 list-disc marker:text-[#EF9F27] marker:text-3xl font-bold text-3xl">
+                    <ul className="flex justify-between items-center mt-5 gap-3 pl-7 pr-7 list-disc marker:text-[#EF9F27] marker:text-3xl font-bold text-xl">
                         <li className="">{props.duration}</li>
                         <li className="">{props.difficulty}</li>
                         <li className=" ">{props.serving}</li>

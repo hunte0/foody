@@ -15,14 +15,15 @@
     "bcryptjs": "^3.0.3",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
-    "dotenv": "^17.4.0",
+    "dotconfig": "^0.0.1-security",
+    "dotenv": "^17.4.2",
     "ejs": "^5.0.1",
     "express": "^5.2.1",
     "express-validator": "^7.3.2",
     "jose": "^6.2.2",
     "jsonwebtoken": "^9.0.3",
     "multer": "^2.1.1",
-    "mysql2": "^3.20.0"
+    "mysql2": "^3.22.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"

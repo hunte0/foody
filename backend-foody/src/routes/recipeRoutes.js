@@ -1,8 +1,15 @@
     const express = require("express");
 
+<<<<<<< Updated upstream
     const {authenticateRole} = require("../middleware/authorizeRole");
     const {authenticateToken} = require("../middleware/authMiddleware");
     const {add,getRecipe} = require ("../controllers/recipeController")
+=======
+    
+    const {authenticateToken} = require("../middleware/authMiddleware");
+    const add = require ("../controllers/recipeController")
+    const search = require ("../controllers/ingredientController")
+>>>>>>> Stashed changes
 
     const upload = require ("../middleware/upload");
 
@@ -17,7 +24,7 @@
             res.json({"message" : err.message});
         }
     })
-
+    router.post("/client/myKitchen/search",search);
     
 
     router.post("/client/myKitchen/add",authenticateToken,upload.single("image"),async (req,res)=>{

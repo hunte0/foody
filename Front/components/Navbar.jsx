@@ -28,9 +28,7 @@ export default function Navbar() {
         <Link href="/signup"><button
         className="px-4 py-2 w-40 bg-transparent drop-shadow-lg border border-gray-500 rounded-lg hover:drop-shadow-xs hover:border-white hover:bg-[rgba(255,255,255,0.1)] cursor-pointer"> 
           Sign in
-          </button>
-        </Link>
-        <Link href="/login">
+        </button>
         <button className="px-4 py-2 w-40 bg-emerald-700 rounded-lg hover:text-emerald-700 hover:bg-emerald-100 hover:border-emerald-900 cursor-pointer hover:-translate-y-1 duration-500">
           Login
         </button>

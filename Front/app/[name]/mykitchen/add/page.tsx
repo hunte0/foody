@@ -1,8 +1,26 @@
 "use client"
 
+<<<<<<< Updated upstream
 import { Upload } from 'lucide-react';
 import { useState,useRef, useEffect } from "react";
 import {useRouter} from "next/navigation"
+=======
+async function handleChange(e){
+  const sreach=e.target.value
+  const url="/api/recipe/client/myKitchen/search"
+  const res=await fetch(url,{
+    method:"POST",
+    headers:{
+            "Content-Type": "application/json"
+          },
+    body:JSON.stringify(sreach)
+  
+  })
+    const products = await res.json()
+    console.log(products)
+}
+
+>>>>>>> Stashed changes
 
 function Add() {
   
@@ -208,6 +226,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
           {ingredients.map((ingredient, index) => (
             <div key={index} className="flex gap-3 mb-3">
               <input
+               onChange={handleChange}
                 type="text"
                 placeholder="Ingredient name"
                 

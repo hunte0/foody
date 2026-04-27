@@ -3,6 +3,12 @@
 import {Icon} from '../../components/Icon';
 import Link from 'next/link'
 import { useState,useRef } from 'react';
+<<<<<<< Updated upstream
+=======
+import { useRouter } from 'next/navigation';
+import { ArrowLeft } from 'lucide-react';
+
+>>>>>>> Stashed changes
 
 
 function Login(){
@@ -49,10 +55,20 @@ function Login(){
 
       
   return (
+<<<<<<< Updated upstream
     <div className="flex flex-col md:flex-row h-screen w-full ">
+=======
+    <div className="flex flex-col md:flex-row h-screen w-full bg-white">
+      <Link href='/'>
+      <div className=' rounded-2xl hover:bg-gray-500 m-5 max-h-6'>
+          <ArrowLeft className='text-black' />
+        </div>
+        </Link>
+      <div className="w-full md:w-1/2 flex items-center justify-center p-10">
+>>>>>>> Stashed changes
       
-      <div className="w-full md:w-1/2 flex items-center justify-center p-10 bg-white">
         <div className="w-full max-w-sm">
+          
           <h2 className="text-4xl font-bold text-slate-800 mb-8 text-center md:text-left">Login</h2>
           
           <form className="space-y-4">

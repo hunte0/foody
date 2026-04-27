@@ -1,14 +1,21 @@
 import { Input } from '../../components/Input';
 import Link from 'next/link'
+import { ArrowLeft } from 'lucide-react';
 
 function Signin() {
   
   return (
-   <div className="relative w-full h-screen flex flex-col md:flex-row ">
-      
+   <div className="relative w-full h-screen flex flex-col md:flex-row bg-white ">
+      <Link href='/login'>
+      <div className=' rounded-2xl hover:bg-gray-500 mt-5 ml-5 max-h-6'>
+          <ArrowLeft className='text-black' />
+        </div>
+        </Link>
     
       
-      <div className="w-full md:w-1/2 flex items-center justify-center p-10 bg-white">
+      <div className="w-full md:w-1/2 flex items-center justify-center p-10 ">
+        
+
         <div className="w-full max-w-sm">
           <h2 className="text-4xl font-bold text-slate-800 mb-8">Sign In</h2>
           
