@@ -1,14 +1,14 @@
 "use client"
-import Navbar from "../../../../components/Navbar";
-import { Input } from '../../../../components/Input';
-import { Upload } from 'lucide-react';
-import { useState,useRef } from "react";
 
+import { Upload } from 'lucide-react';
+import { useState,useRef, useEffect } from "react";
+import {useRouter} from "next/navigation"
 
 function Add() {
+  
   const [fileName, setFileName] = useState<string>("");
   const brief_description = useRef<HTMLTextAreaElement>(null);
-  
+  const [isAdded, setisAdded] = useState<0|1|2>(0);
   const category = useRef<HTMLSelectElement>(null);
   const recipe_name = useRef<HTMLInputElement>(null);
   const difficulty = useRef<HTMLSelectElement>(null);
@@ -19,17 +19,34 @@ function Add() {
   const cookingTime = useRef<HTMLInputElement>(null);
   const [ingredients, setIngredients] = useState([{ name: "", quantity: "", unit: "" }]);
   
-
-  const handleSubmit = async (
-  e: React.FormEvent<HTMLFormElement>
-  ) => {
-  e.preventDefault();
-    console.log("handleSubmit called");
-    const file = image.current?.files?.[0];
+useEffect(() => {
+  if (isAdded === 1) {
     
-    if (
+    brief_description.current  && (brief_description.current.value  = "");
+    category.current           && (category.current.value           = "");
+    recipe_name.current        && (recipe_name.current.value        = "");
+    difficulty.current         && (difficulty.current.value         = "");
+    Prep.current               && (Prep.current.value               = "");
+    Cooking.current            && (Cooking.current.value            = "");
+    Garnish.current            && (Garnish.current.value            = "");
+    cookingTime.current        && (cookingTime.current.value        = "");
+    setIngredients([{ name: "", quantity: "", unit: "" }])
+    setFileName("");
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+      });
+  }
+}, [isAdded]);
+
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  console.log("handleSubmit called");
+  const file = image.current?.files?.[0];
+  
+  if (
     !file ||
-    !ingredients||
+    !ingredients ||
     !category.current ||
     !recipe_name.current ||
     !difficulty.current ||
@@ -37,30 +54,44 @@ function Add() {
     !Garnish.current ||
     !Cooking.current ||
     !cookingTime.current ||
-    ! brief_description.current
-  ) return;
-    const description = Prep.current.value + "/" + Garnish.current.value + "/" + Cooking.current.value
-    const formData = new FormData() ;
-    formData .append("image", file)
-    formData .append("ingredients", JSON.stringify(ingredients))
+    !brief_description.current
+  ) {
+    setisAdded(2);
     
-    formData .append("category", category.current.value)
-    formData .append("recipe_name", recipe_name.current.value)
-    formData .append("difficulty", difficulty.current.value)
-    formData .append("description", description)
-    formData .append("cookingTime", cookingTime.current.value)
-    formData .append("brief_description", brief_description.current.value)
-
-
-    await fetch ("/api/recipe/client/myKitchen/add" , {
-      method : "POST",
-      body : formData ,
-      credentials : "include"
-    })
-    
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+      });
+    return;
   }
 
+  const description = Prep.current.value + "/" + Garnish.current.value + "/" + Cooking.current.value;
+  const formData = new FormData();
+  formData.append("image", file);
+  formData.append("ingredients", JSON.stringify(ingredients));
+  formData.append("category", category.current.value);
+  formData.append("recipe_name", recipe_name.current.value);
+  formData.append("difficulty", difficulty.current.value);
+  formData.append("description", description);
+  formData.append("cookingTime", cookingTime.current.value);
+  formData.append("brief_description", brief_description.current.value);
 
+  const res = await fetch("/api/recipe/client/myKitchen/add", {
+    method: "POST",
+    body: formData,
+    credentials: "include"
+  });
+  const data = await res.json();
+  console.log(data.message);
+  if (data.message === "recipe added") setisAdded(1);
+  else {
+    setisAdded(2);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+      });
+}
+}
 
   
   
@@ -89,14 +120,19 @@ function Add() {
       
       <div className="min-h-screen bg-[#FAF6F1] flex flex-col items-center pt-10 px-4  text-black">
         <form onSubmit={handleSubmit} className="w-full flex justify-center">
-          
+         
         
         <div className="w-full max-w-4xl">
           <h1 className="text-4xl font-bold mb-1 text-black">Create New Recipe</h1>
           <p className="text-black opacity-50 mb-6">Fill in the details to add a new recipe.</p>
-
+          
           <div className="bg-white rounded-xl border border-gray-200 p-8">
             <div className="mb-6 ">
+              {{
+            0: null,
+            1: <h1 className='text-2xl text-green-600'>Added successfully!</h1>,
+            2: <h1 className='text-2xl text-red-600'>Something went wrong!</h1>,
+          }[isAdded]}
               <div>
                 <label className="block text-lg text-gray-700 mb-1 font-bold ">Recipe Name</label>
                  <input  type="text" placeholder="Enter recipe name" className="w-full p-3 border-2 border-slate-300 rounded-lg outline-none text-black" ref={recipe_name} required />

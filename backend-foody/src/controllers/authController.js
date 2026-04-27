@@ -33,12 +33,14 @@ const register = async (req,res) =>{
         httpOnly: true,
         secure: false,
         sameSite: 'lax',
+        domain: "localhost",
         maxAge: 15 * 60 * 1000,
         });
         res.cookie("refreshToken",refresh_token,{
             httpOnly : true,
             secure : false,
             sameSite : 'lax',
+            domain: "localhost",
             maxAge : 7 * 24 * 60 * 60 * 1000,
         });
         res.status(201).json({message:"user est ajouté avec succees",token});
@@ -77,12 +79,14 @@ const login = async (req,res) =>{
             httpOnly: true,
             secure: false,
             sameSite: 'lax',
+            domain: "localhost",
             maxAge: 15 * 60 * 1000,
             });
          res.cookie("refreshToken",refresh_token,{
             httpOnly : true,
             secure : false,
             sameSite : 'lax',
+            domain: "localhost",
             maxAge : 7 * 24 * 60 * 60 * 1000,
         });
         res.status(200).json({message :"login avec succees",username : user.username});
@@ -97,14 +101,10 @@ const login = async (req,res) =>{
 const logout = async (req,res) =>{
     
     res.clearCookie("token", {
-    httpOnly: true,
-    secure: false,
-    sameSite: 'lax',
+    domain: "localhost",
   });
     res.clearCookie("refreshToken",{
-        httpOnly : true,
-        secure : false,
-        sameSite : 'lax',
+       domain: "localhost",
         
     });
     res.status(200).json({message: "logged out"});

@@ -37,7 +37,7 @@ export default function Navbar() {
         </Link>
       </div>
 
-      {/* Hamburger — visible on mobile only */}
+      
       <button className="md:hidden flex flex-col gap-1.5 p-2">
         <span className="block w-6 h-0.5 bg-white"></span>
         <span className="block w-6 h-0.5 bg-white"></span>

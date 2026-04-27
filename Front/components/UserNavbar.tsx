@@ -1,25 +1,37 @@
 "use client"
 import Link from 'next/link'
 import homeCss from '../app/homeCss.module.css';
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useParams } from "next/navigation";
 
 
 export default function UserNavbar() {
   const [selected, setSelected] = useState("👤");
   const [open, setOpen] = useState(false);
- 
+  const [nameh, setName] = useState<string | null>(null);  
   const params = useParams();
+  const name = params.name
+    useEffect(() => {
+    if (name) {
+      localStorage.setItem("name", name as string);
+      setName(name as string); 
+    } else {
+      const stored = localStorage.getItem("name");
+      setName(stored); 
+    }
+  }, [name]);
   const options = ["Mykitchen", "LogOut"];
   
 
       const handleOption = async (option: string) => {
+        
         if (option === "LogOut") {
           await fetch("/api/auth/logout", { method: "POST", credentials: "include" });
           window.location.href = "/login"
-          
+          localStorage.clear()
         } else if (option === "Mykitchen") {
-          window.location.href = `${params.name}/mykitchen`;
+          const stored = localStorage.getItem("name");
+          window.location.href = `${stored}/mykitchen`;
         }
         setSelected(option);
         setOpen(false);
@@ -33,7 +45,7 @@ export default function UserNavbar() {
       </div>
 
       <div className={`${homeCss.navbarLinks} hidden md:flex gap-4 justify-center items-center`}>
-        <Link href="/" className="flex justify-center items-center w-24 h-10 text-xl hover:bg-amber-100 hover:text-emerald-700 rounded-lg">
+        <Link href={`/${nameh}`} className="flex justify-center items-center w-24 h-10 text-xl hover:bg-amber-100 hover:text-emerald-700 rounded-lg">
           Home
         </Link>
         <Link href="/Recipes" className="flex justify-center items-center w-24 h-10 text-xl hover:bg-amber-100 hover:text-emerald-700 rounded-lg">
