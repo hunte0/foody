@@ -2,7 +2,7 @@
 import Image from "next/image";
 import homeCss from "./homeCss.module.css";
 import Footer from "../components/Footer";
-
+import Link from 'next/link'
 
 import { useEffect, useRef } from "react";
 
@@ -183,10 +183,9 @@ function Category() {
         <p className="text-2xl font-bold opacity-50">From clean eating to comfort food — we've got both covered.</p>
       </div>
       <div className="flex gap-4 max-[720px]:flex-col mt-10" >
+        <Link href="/Recipes?cat=healthy">
         <div className={`flex justify-center items-center p-7 flex-col max-w-125 h-175 border border-green-700/30 rounded-4xl bg-emerald-800 hover:-translate-y-4 duration-500 cursor-pointer ${homeCss.cardh} relative`}>
         <div className={homeCss.content}>
-
-        
           <div className="flex mb-6 gap-5 w-full text-5xl">
             🥗
           </div>
@@ -218,6 +217,8 @@ function Category() {
           </div>
           </div>
         </div>
+        </Link>
+        <Link href="/Recipes?cat=normal">
         <div className={`flex justify-center items-center p-7 flex-col max-w-[500px] h-[700px] border border-amber-700/30 rounded-4xl bg-amber-200 hover:-translate-y-4 duration-500 cursor-pointer ${homeCss.cardn } relative`}>
           <div className={homeCss.content}>
           <div className="flex mb-6 gap-5 w-full text-5xl">
@@ -251,13 +252,12 @@ function Category() {
           </div>
           </div>
         </div>
+        </Link>
       </div>
     </div>
     </div>
   );
-  
 }
-
 
 
 

@@ -31,7 +31,7 @@ export default function UserNavbar() {
           localStorage.clear()
         } else if (option === "Mykitchen") {
           const stored = localStorage.getItem("name");
-          window.location.href = `${stored}/mykitchen`;
+          window.location.href = `http://localhost:3000/${stored}/mykitchen`;
         }
         setSelected(option);
         setOpen(false);
@@ -48,7 +48,7 @@ export default function UserNavbar() {
         <Link href={`/${nameh}`} className="flex justify-center items-center w-24 h-10 text-xl hover:bg-amber-100 hover:text-emerald-700 rounded-lg">
           Home
         </Link>
-        <Link href="/Recipes" className="flex justify-center items-center w-24 h-10 text-xl hover:bg-amber-100 hover:text-emerald-700 rounded-lg">
+        <Link href="/Recipes?cat=all" className="flex justify-center items-center w-24 h-10 text-xl hover:bg-amber-100 hover:text-emerald-700 rounded-lg">
           Recipes
         </Link>
         <Link href="/about" className="flex justify-center items-center w-24 h-10 text-xl hover:bg-amber-100 hover:text-emerald-700 rounded-lg">

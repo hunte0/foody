@@ -13,7 +13,8 @@ function Login(){
   const [loading, setLoading] = useState(false);
   const [valid,setValid] = useState (false)
 
-  const handleClick = ()=>{
+  const handleClick = (e: React.FormEvent)=>{
+      e.preventDefault()
       const payload = {
       "username" : username.current?.value,
       "password" : password.current?.value
@@ -55,7 +56,7 @@ function Login(){
         <div className="w-full max-w-sm">
           <h2 className="text-4xl font-bold text-slate-800 mb-8 text-center md:text-left">Login</h2>
           
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={handleClick}>
             <label className="block text-lg text-gray-700 mb-1 font-bold ">Username</label>
             <input type="text" placeholder="enter your username" className="w-full p-3 border-2 border-slate-300 rounded-lg outline-none text-black" onChange={() => setValid(false)} ref={username}  />
             <label className="block text-lg text-gray-700 mb-1 font-bold ">Password</label>
@@ -66,7 +67,7 @@ function Login(){
                <a href='#' className='text-sm text-slate-500 hover:text-[#008645] transition-colors'>Forget password?</a>
             </div>
 
-            <button disabled={loading} type="button" onClick={handleClick} className="w-full bg-[#008645] hover:bg-opacity-90 text-white font-semibold py-4 rounded-2xl transition-all shadow-sm" >
+            <button disabled={loading} type="submit"  className="w-full bg-[#008645] hover:bg-opacity-90 text-white font-semibold py-4 rounded-2xl transition-all shadow-sm" >
               {loading ? "Loading..." : "Login"}
             </button>
 
@@ -87,7 +88,7 @@ function Login(){
               >
                 Sign up
               </Link>
-</p>
+            </p>
           </form>
 
         </div>

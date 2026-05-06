@@ -15,7 +15,7 @@ export default function Navbar() {
         <Link href="/" className="flex justify-center items-center w-24 h-10 text-xl hover:bg-amber-100 hover:text-emerald-700 rounded-lg">
           Home
         </Link>
-        <Link href="/Recipes" className="flex justify-center items-center w-24 h-10 text-xl hover:bg-amber-100 hover:text-emerald-700 rounded-lg">
+        <Link href="/Recipes?cat=all" className="flex justify-center items-center w-24 h-10 text-xl hover:bg-amber-100 hover:text-emerald-700 rounded-lg">
           Recipes
         </Link>
         <Link href="/about" className="flex justify-center items-center w-24 h-10 text-xl hover:bg-amber-100 hover:text-emerald-700 rounded-lg">
